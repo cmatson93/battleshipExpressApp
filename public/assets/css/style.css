@@ -1,0 +1,64 @@
+#tb1 {
+    border-collapse: collapse;
+    /* border: 2px solid red; */
+}
+
+#tb2 {
+    border-collapse: collapse;
+    /* border: 2px solid blue; */
+}
+
+table,
+th,
+td {
+    border: 3px solid black;
+}
+
+td {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    text-align: center;
+}
+
+.hit {
+    background-color: red;
+}
+
+.miss {
+    background-color: blue;
+}
+
+.moves {
+    margin: 20px;
+}
+
+.ships {
+    background-color: grey;
+    padding: 3px;
+    text-align: center
+}
+
+.ships:hover {
+    background-color: yellow;
+}
+
+.selected {
+    background-color: yellow;
+}
+
+table {
+    margin: 10px;
+}
+
+.placed {
+    background-color: blue;
+}
+
+.moves button {
+    margin: 5px 9px;
+}
+
+#players {
+    margin-top: 10px;
+}

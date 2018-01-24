@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>BattleShip</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom style sheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid ">
+            <div class="container justify-content-center">
+                <h1 class="display-4">BattleShip!</h1>
+                <p class="lead">Let's Battle.</p>
+                <!-- <div id="mario-chat">
+                    <h2>Mario Chat</h2>
+                    <div id="chat-window">
+                        <div id="output"></div>
+                    </div>
+                    <input id="handle" type="text" placeholder="Handle" />
+                    <input id="message" type="text" placeholder="Message" />
+                    <button id="send">Send</button>
+                </div> -->
+                <!-- <form> -->
+                <div class="form-row">
+                    <div class="col">
+                        <a class="btn btn-primary" href="#" role="button">Rules</a>
+                    </div>
+                    <div class="col">
+                        <!-- <input type="text" id="handle" class="form-control" placeholder="Name"> -->
+                        <input id="handle" type="text" class="form-control" placeholder="Your Name">
+                    </div>
+                    <div class="col">
+                        <!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
+                        <input id="submitName" type="submit" value="Submit">
+                    </div>
+                    <div class="col">
+                        <button type="submit" id="send" class="btn btn-primary">Reset</button>
+                    </div>
+                </div>
+                <!-- </form> -->
+                <div class="row" id="players">
+                    <div class="col" id="player1">
+                        <div id="output1">Player 1</div>
+                    </div>
+                    <div class="col" id="player2">
+                        <div id="output2">Player 2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row"> -->
+        <div class="gameboards row">
+            <div class="col">
+                <table id="tb1">
+
+                </table>
+            </div>
+            <div class="col">
+                <table id="tb2">
+
+                </table>
+            </div>
+        </div>
+        <!-- </div> -->
+        <div class="row ">
+            <div class="col">
+                <div class="row moves">
+                    <div class="col">
+                        <div class="player1-moves">
+                            <h6 class="ships" id=="0" value="0">Destroyer</h6>
+                            <h6 class="ships" id=="1" value="1">Submarine</h6>
+                            <h6 class="ships" id=="2" value="2">Cruiser</h6>
+                            <h6 class="ships" id=="3" value="3">Battleship</h6>
+                            <h6 class="ships" id=="4" value="4">Carrier</h6>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-primary dir-btn" value=false>Verticle</button>
+                        <button type="button" class="btn btn-primary dir-btn" value=true>Horizontal</button>
+                        <button type="button" class="btn btn-primary submit-btn" value=true>Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="javascript/players.js"></script>
+<!-- <script type="text/javascript" src="play.js"></script> -->
+<!-- <script type="text/javascript" src="js/ship-placement.js"></script> -->
+
+</html>

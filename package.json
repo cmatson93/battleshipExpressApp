@@ -1,0 +1,24 @@
+{
+  "name": "battleshipexpressapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmatson93/battleshipExpressApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cmatson93/battleshipExpressApp/issues"
+  },
+  "homepage": "https://github.com/cmatson93/battleshipExpressApp#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "nodemon": "^1.14.11",
+    "socket.io": "^2.0.4"
+  }
+}
