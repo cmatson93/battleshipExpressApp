@@ -7,7 +7,7 @@ var players = [];
 var player1 = [];
 var player2 = [];
 
-socket.on('msg', onMessage);
+socket.on('message', onMessage);
 
 function onMessage(text) {
     $("#message").text(text);

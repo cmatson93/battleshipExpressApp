@@ -33,6 +33,7 @@ io.on('connection', (socket) => {
         // socket.emit('msg', 'Match Starts');
         // waitingPlayer.emit('msg', 'Match Starts');
         new BattleGame(waitingPlayer, socket);
+        // BattleGame._sendToPlayers(waitingPlayer, socket);
         waitingPlayer = null;
     } else {
         waitingPlayer = socket;
