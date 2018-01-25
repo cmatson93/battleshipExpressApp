@@ -50,9 +50,9 @@ io.on('connection', (socket) => {
     })
 
     //Handle ship placement 
-    socket.on('shipObj', function(data) {
-        io.sockets.emit('shipObj', data);
-    })
+    // socket.on('shipObj', function(data) {
+    //     io.sockets.emit('shipObj', data);
+    // })
 })
 
 // setInterval(function() {

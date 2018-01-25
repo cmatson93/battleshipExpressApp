@@ -231,7 +231,7 @@ $(".submit-btn").on('click', function(event) {
                     if (shipObj.cruiser.coordinates.length > 0) {
                         if (shipObj.submarine.coordinates.length > 0) {
                             console.log("SHIP OBJ IS FULL");
-                            socket.emit("shipObj", {
+                            socket.emit("shipPlacement", {
                                 shipObj: shipObj
                             })
                         }
