@@ -1,9 +1,3 @@
-// destroyer = 0;
-// submarine = 1;
-// cruiser = 2;              <--- Ship lengths for personal reference.
-// battleship = 3;
-// carrier = 4;
-
 //Init some global variables. 
 var shipLength;
 //default direction=horizontal, have to click manually to chage
