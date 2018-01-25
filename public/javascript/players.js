@@ -16,18 +16,13 @@ function onMessage(text) {
 
 // Query connection to get players names
 $("#submitName").on("click", function(event) {
-    // console.log("CLICKED");
-    // console.log($("#handle").val().trim());
     var player = $("#handle").val().trim();
-    // console.log(players.length);
     if (players.length === 0) {
-        // console.log("EMITING");
         socket.emit("player", {
             player1: player
         })
     }
     if (players.length > 0) {
-        // console.log("EMMITING PLAYER 2");
         socket.emit("player", {
             player2: player
         })
@@ -83,54 +78,36 @@ $(".ships").click(function() {
     }
     $("td").click(function() {
         if (shipObj[ship].length === 0) {
-            // console.log("location", $(this).attr("id"));
             var location = ($(this).attr("id"));
-            // console.log("-------");
-            // console.log(ship)
             var shipId = "#" + ship;
-            // console.log(shipId);
-            // console.log("--------");
             $(shipId).removeClass('selected');
             $(shipId).addClass('placed');
             shipPlacement(ship, shipLength, dir, location);
         }
     })
     $(".dir-btn").click(function() {
-        // console.log($(this).attr("value"));
         dir = ($(this).attr("value"));
     })
 })
 
 function shipPlacement(ship, lng, dir, loc) {
-    // console.log("length", lng);
-    // console.log("dirrection", dir);
-    // console.log("location", loc);
-    // console.log("ship", ship)
-    // console.log("+++++++");
     var xy = loc.split("");
     var x = parseInt(xy[0]);
     var y = parseInt(xy[1]);
-    // console.log("x", x, "y", y);
     var placement = [];
     placement.push(loc);
 
     if (dir === "true") {
-        // console.log("horizontal");
         for (let i = 1; i < lng; i++) {
-            // console.log(i);
             var shipPlace = x + i;
             shipPlace = shipPlace.toString() + y;
-            // console.log("ship places", shipPlace);
             placement.push(shipPlace);
-            // console.log("new placement", placement);
         }
     } else if (dir === "false") {
         for (let i = 1; i < lng; i++) {
             var shipPlace = y + i;
             shipPlace = x + shipPlace.toString();
-            // console.log("ship places", shipPlace);
             placement.push(shipPlace);
-            // console.log("new placement", placement);
         }
     }
     for (let i = 0; i < placement.length; i++) {
@@ -220,42 +197,31 @@ function makeTable2() {
     }
 }
 
-
+var shipobjLength = 0;
 //Once Ships are all placed send object to server:
 $(".submit-btn").on('click', function(event) {
-        console.log(shipObj);
-        console.log(shipObj.destroyer.coordinates.length);
-        if (shipObj.destroyer.coordinates.length > 0) {
-            if (shipObj.battleship.coordinates.length > 0) {
-                if (shipObj.carrier.coordinates.length > 0) {
-                    if (shipObj.cruiser.coordinates.length > 0) {
-                        if (shipObj.submarine.coordinates.length > 0) {
-                            console.log("SHIP OBJ IS FULL");
-                            socket.emit("shipPlacement", {
-                                shipObj: shipObj
-                            })
+    console.log(shipObj);
+    console.log(shipObj.destroyer.coordinates.length);
+    if (shipObj.destroyer.coordinates.length > 0) {
+        if (shipObj.battleship.coordinates.length > 0) {
+            if (shipObj.carrier.coordinates.length > 0) {
+                if (shipObj.cruiser.coordinates.length > 0) {
+                    if (shipObj.submarine.coordinates.length > 0) {
+                        console.log("SHIP OBJ IS FULL");
+                        shipobjLength += 1;
+                        socket.emit("shipPlacement", {
+                            shipObj: shipObj
+                        })
+                        if (shipobjLength === 2) {
+                            gamePlay = true;
                         }
                     }
                 }
             }
         }
-    })
-    // if (shipObj.destroyer.length > 0) {
-    //     console.log("1");
-    //     if (shipObj.battleship.length > 0) {
-    //         if (shipObj.carrier.length > 0) {
-    //             if (shipObj.cruiser.length > 0) {
-    //                 if (shipObj.submarine.length > 0) {
-    //                     console.log("ALL SHIPS PLACED");
-    //                     console.log(shipObj);
-    //                     socket.emit("shipObj", {
-    //                         shipObj: shipObj
-    //                     })
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+    }
+})
+
 
 socket.on('shipObj', function(data) {
     console.log("WORKED");
