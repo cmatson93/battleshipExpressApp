@@ -170,7 +170,7 @@ function makeTable1() {
         table1.append(row);
         for (var j = 1; j < gameBoard; j++) {
             var cordinate = j.toString() + i.toString();
-            cell = $('<td id=' + cordinate + '>' + cordinate + '</td>');
+            cell = $('<td class="table1" id=' + cordinate + '>' + cordinate + '</td>');
             row.append(cell);
         }
     }
@@ -187,7 +187,7 @@ function makeTable2() {
         table2.append(row);
         for (var j = 1; j < gameBoard; j++) {
             var cordinate = j.toString() + i.toString();
-            cell = $('<td id=' + cordinate + '>' + cordinate + '</td>');
+            cell = $('<td class="table2" id=' + cordinate + '>' + cordinate + '</td>');
             row.append(cell);
         }
     }
@@ -208,9 +208,8 @@ $(".submit-btn").on('click', function(event) {
                         socket.emit("shipPlacement", {
                             shipObj: shipObj
                         })
-                        if (shipobjLength === 2) {
-                            gamePlay = true;
-                        }
+
+                        $(".moves").remove();
                     }
                 }
             }
@@ -221,4 +220,9 @@ $(".submit-btn").on('click', function(event) {
 
 socket.on('gamePlay', function(data) {
     onMessage(data);
+    $(".table2").on("click", function(event) {
+        var shot = $(this).attr("id");
+        console.log(shot);
+        socket.emit("turn", shot)
+    })
 })

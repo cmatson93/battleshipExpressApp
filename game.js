@@ -44,8 +44,9 @@ class BattleGame {
     };
 
     _onTurn(playerIndex, turn) {
+        console.log(turn);
         this._turns[playerIndex] = turn;
-        this._sendToPlayers(playerIndex, `You selected ${turn}`)
+        this._sendToPlayer(playerIndex, `You selected position ${turn}`)
     };
 
     _checkGameOver() {
