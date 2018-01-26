@@ -32,7 +32,6 @@ class BattleGame {
 
     _shipPlacement(playerIndex, shipObj) {
         this._shipObj[playerIndex] = shipObj;
-        console.log("HI");
         console.log(this._shipObj);
 
         //Send some kind of message that tells it's time to fire. 
@@ -65,6 +64,8 @@ class BattleGame {
                     for (var i = 0; i < positions.length; i++) {
                         if (positions[i] === turn) {
                             console.log("HIT");
+                            console.log(turn);
+                            console.log(typeof(turn));
                         } else {
                             console.log("MISS");
                         }
@@ -87,6 +88,8 @@ class BattleGame {
                     for (var i = 0; i < positions.length; i++) {
                         if (positions[i] === turn) {
                             console.log("HIT");
+                            console.log(turn);
+                            console.log(typeof(turn));
                         } else {
                             console.log("MISS");
                         }
