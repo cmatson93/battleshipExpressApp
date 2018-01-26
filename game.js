@@ -34,6 +34,7 @@ class BattleGame {
         this._shipObj[playerIndex] = shipObj;
         console.log("HI");
         console.log(this._shipObj);
+
         //Send some kind of message that tells it's time to fire. 
         if (this._shipObj[0] && this._shipObj[1]) {
             console.log("FULL");
@@ -44,9 +45,55 @@ class BattleGame {
     };
 
     _onTurn(playerIndex, turn) {
-        console.log(turn);
+        // console.log(turn);
+        // console.log(typeof(turn));
         this._turns[playerIndex] = turn;
         this._sendToPlayer(playerIndex, `You selected position ${turn}`)
+        if (playerIndex === 0) {
+            var opponentIndex = 1;
+            // console.log("------------------");
+            // console.log(this._shipObj[opponentIndex]);
+            var opponentObj = this._shipObj[opponentIndex];
+            for (var key in opponentObj) {
+                // console.log(key);
+                // console.log(opponentObj[key]);
+                var obj = opponentObj[key];
+                for (var prop in obj) {
+                    // console.log(prop);
+                    // console.log(obj[prop]);
+                    var positions = obj[prop];
+                    for (var i = 0; i < positions.length; i++) {
+                        if (positions[i] === turn) {
+                            console.log("HIT");
+                        } else {
+                            console.log("MISS");
+                        }
+                    }
+                }
+            }
+        } else {
+            var opponentIndex = 0;
+            // console.log("------------------");
+            // console.log(this._shipObj[opponentIndex]);
+            var opponentObj = this._shipObj[opponentIndex];
+            for (var key in opponentObj) {
+                // console.log(key);
+                // console.log(opponentObj[key]);
+                var obj = opponentObj[key];
+                for (var prop in obj) {
+                    // console.log(prop);
+                    // console.log(obj[prop]);
+                    var positions = obj[prop];
+                    for (var i = 0; i < positions.length; i++) {
+                        if (positions[i] === turn) {
+                            console.log("HIT");
+                        } else {
+                            console.log("MISS");
+                        }
+                    }
+                }
+            }
+        }
     };
 
     _checkGameOver() {

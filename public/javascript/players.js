@@ -205,9 +205,7 @@ $(".submit-btn").on('click', function(event) {
                     if (shipObj.submarine.coordinates.length > 0) {
                         console.log("SHIP OBJ IS FULL");
                         shipobjLength += 1;
-                        socket.emit("shipPlacement", {
-                            shipObj: shipObj
-                        })
+                        socket.emit("shipPlacement", shipObj)
 
                         $(".moves").remove();
                     }
