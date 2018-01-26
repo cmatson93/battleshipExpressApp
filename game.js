@@ -35,8 +35,13 @@ class BattleGame {
         console.log("HI");
         console.log(this._shipObj);
         //Send some kind of message that tells it's time to fire. 
-        // this._sendToPlayers(playerIndex, ``)
-    }
+        if (this._shipObj[0] && this._shipObj[1]) {
+            console.log("FULL");
+            this._players.forEach((player) => {
+                player.emit("gamePlay", "Board are ready time to FIRE!");
+            })
+        }
+    };
 
     _onTurn(playerIndex, turn) {
         this._turns[playerIndex] = turn;

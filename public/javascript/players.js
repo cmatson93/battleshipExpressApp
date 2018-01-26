@@ -13,7 +13,6 @@ function onMessage(text) {
     $("#message").text(text);
 }
 
-
 // Query connection to get players names
 $("#submitName").on("click", function(event) {
     var player = $("#handle").val().trim();
@@ -145,15 +144,12 @@ function makeShipObj(placement, ship) {
 
 // Listen for events
 socket.on('player', function(data) {
-    // console.log(data);
     if (players.length === 0) {
-        // console.log("PUSH 1")
         players.push(data.player1)
         $("#output1").text(data.player1);
 
     }
     if (data.player2) {
-        // console.log("PUSH 2");
         players.push(data.player2);
         $("#output2").text(data.player2);
         makeTable1();
@@ -223,7 +219,6 @@ $(".submit-btn").on('click', function(event) {
 })
 
 
-socket.on('shipObj', function(data) {
-    console.log("WORKED");
-    console.log(data);
+socket.on('gamePlay', function(data) {
+    onMessage(data);
 })
