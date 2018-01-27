@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "Machine";
+    src: url("css/fonts/itc-machine-std/MachineStd.otf");
+    /* src: url("css/fonts/Harabara.woff") format("woff"), url("css/fonts/Harabara.otf") format("opentype"), url("css/fonts/Harabara.svg#filename") format("svg"); */
+}
+
 body {
     min-height: 100%;
     background: url("../images/sub.png") no-repeat;
@@ -18,6 +24,10 @@ body {
     border-radius: 8px;
     border: 2px solid #F1EBE2;
     color: #F1EBE2;
+}
+
+.jumbotron h1 {
+    font-family: 'Special Elite', cursive;
 }
 
 .page {

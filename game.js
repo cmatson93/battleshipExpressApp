@@ -3,6 +3,15 @@ class BattleGame {
         this._players = [p1, p2]
         this._turns = [null, null];
         this._shipObj = [null, null];
+        this._hits = [
+            [],
+            []
+        ];
+        this._misses = [
+            [null],
+            [null]
+        ];
+
         this._sendToPlayers("Battleship game starts please submit your name if you haven't already!");
 
         this._players.forEach((player, idx) => {
@@ -44,10 +53,13 @@ class BattleGame {
     };
 
     _onTurn(playerIndex, turn) {
-        // console.log(turn);
-        // console.log(typeof(turn));
         this._turns[playerIndex] = turn;
         this._sendToPlayer(playerIndex, `You selected position ${turn}`)
+        var hits = this._hits[playerIndex];
+        var misses = this._misses[playerIndex];
+        console.log("TURN");
+        console.log(this._hits);
+        console.log(this._hits[playerIndex]);
         if (playerIndex === 0) {
             var opponentIndex = 1;
             // console.log("------------------");
@@ -66,6 +78,8 @@ class BattleGame {
                             console.log("HIT");
                             console.log(turn);
                             console.log(typeof(turn));
+                            hits.push(turn);
+                            console.log(hits);
                         } else {
                             console.log("MISS");
                         }
@@ -90,6 +104,8 @@ class BattleGame {
                             console.log("HIT");
                             console.log(turn);
                             console.log(typeof(turn));
+                            hits.push(turn);
+                            console.log(hits);
                         } else {
                             console.log("MISS");
                         }
