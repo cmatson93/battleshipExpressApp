@@ -47,7 +47,7 @@ class BattleGame {
         if (this._shipObj[0] && this._shipObj[1]) {
             console.log("FULL");
             this._players.forEach((player) => {
-                player.emit("gamePlay", "Board are ready time to FIRE!");
+                player.emit("gamePlay", "Boards are ready time to FIRE!");
             })
         }
     };
@@ -75,13 +75,11 @@ class BattleGame {
                     var positions = obj[prop];
                     for (var i = 0; i < positions.length; i++) {
                         if (positions[i] === turn) {
-                            console.log("HIT");
-                            console.log(turn);
-                            console.log(typeof(turn));
                             hits.push(turn);
-                            console.log(hits);
+                            player.emit("result", "hit");
                         } else {
-                            console.log("MISS");
+                            misses.push(turn);
+                            player.emit("resutl", "miss");
                         }
                     }
                 }
@@ -101,13 +99,11 @@ class BattleGame {
                     var positions = obj[prop];
                     for (var i = 0; i < positions.length; i++) {
                         if (positions[i] === turn) {
-                            console.log("HIT");
-                            console.log(turn);
-                            console.log(typeof(turn));
                             hits.push(turn);
-                            console.log(hits);
+                            player.emit("result", "hit");
                         } else {
-                            console.log("MISS");
+                            misses.push(turn);
+                            player.emit("result", "miss");
                         }
                     }
                 }
