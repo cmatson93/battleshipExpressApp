@@ -244,3 +244,7 @@ socket.on("result", function(data) {
         onMessage("Your ship has been hit!");
     }
 })
+
+socket.on("gameOver", function() {
+    $(".gameboards").remove();
+})

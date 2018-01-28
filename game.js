@@ -125,6 +125,8 @@ class BattleGame {
         console.log(this._hits[1].length);
         if (this._hits[0].length === 17 || this._hits[1].length === 17) {
             this._sendToPlayers("Game Over.");
+            this._players[0].emit("gameOver");
+            this._players[1].emit("gameOver");
         }
         // if (turns[0] && turns[1]) {
         //     this._sendToPlayers("Game Over" + turns.join(' : '));
@@ -132,18 +134,6 @@ class BattleGame {
         //     this._sendToPlayers("Next Round!!!");
         // }
     }
-
-    _getGameResult() {
-        switch (this._turns[0]) {
-            case rock:
-
-                break;
-
-            case 's':
-                break;
-        }
-    }
-
 }
 
 module.exports = BattleGame;
