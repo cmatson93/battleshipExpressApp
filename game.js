@@ -76,9 +76,9 @@ class BattleGame {
                     for (var i = 0; i < positions.length; i++) {
                         if (positions[i] === turn) {
                             hits.push(turn);
-                            this._players.forEach((player) => {
-                                player.emit("result", "hit");
-                            })
+                            this._players[playerIndex].emit("result", "hit");
+                            this._players[opponentIndex].emit("result", "Your ship got hit!");
+                            this._checkGameOver();
                         } else {
                             // misses.push(turn);
                             // this._players.forEach((player) => {
@@ -104,10 +104,9 @@ class BattleGame {
                     for (var i = 0; i < positions.length; i++) {
                         if (positions[i] === turn) {
                             hits.push(turn);
-                            this._players.forEach((player) => {
-                                    player.emit("result", "hit");
-                                })
-                                //Use this._sendToPlayer to send result message
+                            this._players[playerIndex].emit("result", "hit");
+                            this._players[opponentIndex].emit("result", "attacked");
+                            this._checkGameOver();
                         } else {
                             // misses.push(turn);
                             // this._players.forEach((player) => {
@@ -121,13 +120,17 @@ class BattleGame {
     };
 
     _checkGameOver() {
-        const turns = this._turns;
-
-        if (turns[0] && turns[1]) {
-            this._sendToPlayers("Game Over" + turns.join(' : '));
-            this._turns = [null, null];
-            this._sendToPlayers("Next Round!!!");
+        console.log("TRACKING HITS");
+        console.log(this._hits[0].length);
+        console.log(this._hits[1].length);
+        if (this._hits[0].length === 17 || this._hits[1].length === 17) {
+            this._sendToPlayers("Game Over.");
         }
+        // if (turns[0] && turns[1]) {
+        //     this._sendToPlayers("Game Over" + turns.join(' : '));
+        //     this._turns = [null, null];
+        //     this._sendToPlayers("Next Round!!!");
+        // }
     }
 
     _getGameResult() {

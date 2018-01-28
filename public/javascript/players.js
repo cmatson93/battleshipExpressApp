@@ -7,6 +7,8 @@ var players = [];
 var player1 = [];
 var player2 = [];
 
+var hitCount = 0;
+var hitsToWin = 18;
 socket.on('message', onMessage);
 
 function onMessage(text) {
@@ -142,7 +144,7 @@ function makeShipObj(placement, ship) {
     }
 }
 
-// Listen for events
+// Displaying Players names on Scoreboard:
 socket.on('player', function(data) {
     if (players.length === 0) {
         players.push(data.player1)
@@ -187,7 +189,7 @@ function makeTable2() {
         table2.append(row);
         for (var j = 1; j < gameBoard; j++) {
             var cordinate = j.toString() + i.toString();
-            cell = $('<td class="table2" id=' + cordinate + '>' + cordinate + '</td>');
+            cell = $('<td class="table2" id=' + cordinate + '-2>' + cordinate + '</td>');
             row.append(cell);
         }
     }
@@ -206,7 +208,6 @@ $(".submit-btn").on('click', function(event) {
                         console.log("SHIP OBJ IS FULL");
                         shipobjLength += 1;
                         socket.emit("shipPlacement", shipObj)
-
                         $(".moves").remove();
                     }
                 }
@@ -215,11 +216,14 @@ $(".submit-btn").on('click', function(event) {
     }
 })
 
-
+var shot;
+var shotSplit;
 socket.on('gamePlay', function(data) {
     onMessage(data);
     $(".table2").on("click", function(event) {
-        var shot = $(this).attr("id");
+        shotSplit = $(this).attr("id").split("-");
+        console.log(shotSplit);
+        shot = shotSplit[0];
         console.log(shot);
         socket.emit("turn", shot)
     })
@@ -228,7 +232,15 @@ socket.on('gamePlay', function(data) {
 socket.on("result", function(data) {
     if (data === "hit") {
         onMessage("You hit one!");
-    } else {
-        onMessage("Miss...");
+        console.log(shot);
+        var td = "#" + shot + "-2";
+        $(td).addClass("hit");
+        // hitCount++;
+        // console.log(hitCount);
+        // if (hitCount === hitsToWin) {
+        //     socket.emit("gameOver", true);
+        // }
+    } else if (data === "attacked") {
+        onMessage("Your ship has been hit!");
     }
 })
