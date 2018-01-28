@@ -76,10 +76,14 @@ class BattleGame {
                     for (var i = 0; i < positions.length; i++) {
                         if (positions[i] === turn) {
                             hits.push(turn);
-                            player.emit("result", "hit");
+                            this._players.forEach((player) => {
+                                player.emit("result", "hit");
+                            })
                         } else {
-                            misses.push(turn);
-                            player.emit("resutl", "miss");
+                            // misses.push(turn);
+                            // this._players.forEach((player) => {
+                            //     player.emit("result", "miss");
+                            // })
                         }
                     }
                 }
@@ -100,10 +104,15 @@ class BattleGame {
                     for (var i = 0; i < positions.length; i++) {
                         if (positions[i] === turn) {
                             hits.push(turn);
-                            player.emit("result", "hit");
+                            this._players.forEach((player) => {
+                                    player.emit("result", "hit");
+                                })
+                                //Use this._sendToPlayer to send result message
                         } else {
-                            misses.push(turn);
-                            player.emit("result", "miss");
+                            // misses.push(turn);
+                            // this._players.forEach((player) => {
+                            //     player.emit("result", "miss");
+                            // })
                         }
                     }
                 }

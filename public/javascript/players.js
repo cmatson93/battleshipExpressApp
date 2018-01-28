@@ -224,3 +224,11 @@ socket.on('gamePlay', function(data) {
         socket.emit("turn", shot)
     })
 })
+
+socket.on("result", function(data) {
+    if (data === "hit") {
+        onMessage("You hit one!");
+    } else {
+        onMessage("Miss...");
+    }
+})
