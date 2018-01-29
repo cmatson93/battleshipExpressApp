@@ -25,6 +25,15 @@ var waitingPlayer;
 var player1Obj = {};
 var player2Obj = {};
 
+// Heroku won't actually allow us to use WebSockets
+// so we have to setup polling instead.
+// https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
+// io.use(function() {
+//     io.set("transports", ["xhr-polling"]);
+//     io.set("polling duration", 10);
+// });
+
+
 io.on('connection', (socket) => {
     console.log("Made socket connection", socket.id);
 
