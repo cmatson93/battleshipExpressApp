@@ -1,23 +1,9 @@
-@font-face {
-    font-family: "Machine";
-    src: url("css/fonts/itc-machine-std/MachineStd.otf");
-    /* src: url("css/fonts/Harabara.woff") format("woff"), url("css/fonts/Harabara.otf") format("opentype"), url("css/fonts/Harabara.svg#filename") format("svg"); */
-}
-
 body {
     min-height: 100%;
     background: url("../images/sub.png") no-repeat;
     background-size: cover;
+    font-family: 'Special Elite', cursive;
 }
-
-
-/* html {
-    background: url("../images/sub.png") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-} */
 
 .hit {
     background-color: red;
@@ -45,12 +31,10 @@ body {
 
 #tb1 {
     border-collapse: collapse;
-    /* border: 2px solid red; */
 }
 
 #tb2 {
     border-collapse: collapse;
-    /* border: 2px solid blue; */
 }
 
 table,
@@ -76,6 +60,10 @@ td {
 
 .moves {
     margin: 20px;
+}
+
+.hidden-moves {
+    display: none;
 }
 
 .ships {

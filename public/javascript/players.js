@@ -183,6 +183,7 @@ function makeTable1() {
 
 function makeTable2() {
     //Give table a header 
+    $(".moves").removeClass("hidden-moves");
     $(".header2").append("<h2 class=table2-header>Opponents Board</h2>");
     //Make Table 2
     var table2 = $('#tb2');
