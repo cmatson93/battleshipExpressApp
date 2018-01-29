@@ -4,8 +4,8 @@ var socket = io.connect("http://localhost:3000");
 
 var players = [];
 
-var player1 = [];
-var player2 = [];
+// var player1 = [];
+// var player2 = [];
 
 var hitCount = 0;
 var hitsToWin = 18;
@@ -45,12 +45,29 @@ var shipObj = {
     carrier: []
 };
 
-
+var shipSelected = false;
 //Highlight selected ship for ship placement.
 $('h6').on("click", function() {
+    shipSelected = true;
     $("h6").removeClass('selected');
     $(this).addClass('selected');
+    var length = $(this).attr("id");
+    $(document).ready(function() {
+        console.log(length);
+        if (shipSelected === true) {
+            $(".table1").hover(function() {
+                $(this).css("background-color", "pink");
+            }, function() {
+                if ($(this).text() === '-') {
+                    $(this).css("background-color", "blue")
+                } else {
+                    $(this).css("background", "none");
+                }
+            });
+        }
+    });
 });
+
 
 var ship;
 //Get info to place ship when user clicks on ship name. 
@@ -78,6 +95,7 @@ $(".ships").click(function() {
             shipLength = 5;
             break;
     }
+
     $("td").click(function() {
         if (shipObj[ship].length === 0) {
             var location = ($(this).attr("id"));
@@ -114,7 +132,8 @@ function shipPlacement(ship, lng, dir, loc) {
     }
     for (let i = 0; i < placement.length; i++) {
         var id = "#" + placement[i];
-        $(id).addClass('placed');
+        $(id).text("-");
+        $(id).css('background-color', 'blue');
     }
 
     makeShipObj(placement, ship);
@@ -180,6 +199,7 @@ function makeTable1() {
             row.append(cell);
         }
     }
+
 }
 
 function makeTable2() {

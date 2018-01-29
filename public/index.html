@@ -68,16 +68,16 @@
                 </table>
             </div>
         </div>
-        <div class="row ">
+        <div class="row moves  hidden-moves">
             <div class="col">
-                <div class="row moves hidden-moves">
+                <div class="row ">
                     <div class="col">
                         <div class="player1-moves">
-                            <h6 class="ships" id=="0" value="0">Destroyer</h6>
-                            <h6 class="ships" id=="1" value="1">Submarine</h6>
-                            <h6 class="ships" id=="2" value="2">Cruiser</h6>
-                            <h6 class="ships" id=="3" value="3">Battleship</h6>
-                            <h6 class="ships" id=="4" value="4">Carrier</h6>
+                            <h6 class="ships" id="2" value="0">Destroyer</h6>
+                            <h6 class="ships" id="2" value="1">Submarine</h6>
+                            <h6 class="ships" id="3" value="2">Cruiser</h6>
+                            <h6 class="ships" id="4" value="3">Battleship</h6>
+                            <h6 class="ships" id="5" value="4">Carrier</h6>
                         </div>
                     </div>
                     <div class="col">
@@ -89,7 +89,12 @@
             </div>
             <div class="col">
                 <div class="row">
-
+                    <li>Select a ship to place on the board.</li>
+                    <li>Choose which dirrection you would like it to be.</li>
+                    <li>Check that it will fit at that location.</li>
+                    <li>(Ship will be placed to the right or downwaord dirrection)</li>
+                    <li>When ready to place ship click on square to place ship.</li>
+                    <li>Once all ships are placed wait till opponent has placed ships.</li>
                 </div>
             </div>
         </div>
@@ -100,7 +105,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="javascript/players.js"></script>
-<script type="text/javascript" src="javascript/play.js"></script>
 <script type="text/javascript" src="javascript/ship-placement.js"></script>
 
 </html>

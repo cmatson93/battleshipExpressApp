@@ -38,6 +38,10 @@ body {
     border-collapse: collapse;
 }
 
+li {
+    color: #F1EBE2;
+}
+
 table,
 th,
 td {
