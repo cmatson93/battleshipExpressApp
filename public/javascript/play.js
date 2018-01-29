@@ -1,14 +1,12 @@
 console.log("Reading chat.js");
 //Make connection:
 var socket = io.connect("https://quiet-sierra-43006.herokuapp.com/");
+// var socket = io.connect("//localhost:3000/");
 
 var players = [];
 
-// var player1 = [];
-// var player2 = [];
-
 var hitCount = 0;
-var hitsToWin = 18;
+var hitsToWin = 17;
 socket.on('message', onMessage);
 
 function onMessage(text) {
@@ -54,9 +52,21 @@ $('h6').on("click", function() {
     var length = $(this).attr("id");
     $(document).ready(function() {
         console.log(length);
+
         if (shipSelected === true) {
             $(".table1").hover(function() {
                 $(this).css("background-color", "pink");
+                var item = $(this).attr("id");
+                var hoverArray = [];
+                console.log(length);
+                console.log("item", item);
+                console.log(typeof(item));
+                if (dir === "true") {
+                    for (var i = 0; i < length; i++) {
+                        hoverArray.push(parseInt(item) + 1);
+                        console.log(hoverArray);
+                    }
+                }
             }, function() {
                 if ($(this).text() === '-') {
                     $(this).css("background-color", "blue")
