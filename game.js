@@ -19,11 +19,11 @@ class BattleGame {
 
         this._players.forEach((player, idx) => {
             player.on('shipPlacement', (shipObj) => {
-                console.log("ship place");
                 this._shipPlacement(idx, shipObj)
             })
             player.on('turn', (turn) => {
-                this._checkIfGuessed(idx, turn)
+                console.log("turn");
+                this._onTurn(idx, turn);
             })
         })
     };
@@ -40,42 +40,17 @@ class BattleGame {
 
     _shipPlacement(playerIndex, shipObj) {
         this._shipObj[playerIndex] = shipObj;
-        console.log(this._shipObj);
 
         //Send some kind of message that tells it's time to fire. 
         if (this._shipObj[0] && this._shipObj[1]) {
-            console.log("FULL");
             this._players.forEach((player) => {
                 player.emit("gamePlay", "Boards are ready time to FIRE!");
             })
         }
     };
 
-    _checkIfGuessed(playerIndex, turn) {
-        console.log("CHECKING");
-        console.log(this._turns[playerIndex].length)
-        if (this._turns[playerIndex].length === 0) {
-            this._onTurn(playerIndex, turn);
-        } else {
-            for (var i = 0; i < this._turns[playerIndex].length; i++) {
-                console.log(this._turns[playerIndex]);
-                console.log(this._turns[playerIndex][i]);
-                console.log(turn);
-                console.log("======");
-                if (this._turns[playerIndex][i] === turn) {
-                    console.log("ALREADY Guessed");
-                    this._players[playerIndex].emit("result", "already-guessed");
-                } else {
-                    console.log("HAVENT GUESSED");
-                    this._onTurn(playerIndex, turn);
-                    break;
-                }
-            }
-        }
-    }
-
     _onTurn(playerIndex, turn) {
-        console.log("-ONTURN");
+        console.log("on turn");
         this._turns[playerIndex].push(turn);
         this._sendToPlayer(playerIndex, `You selected position ${turn}`)
         var hits = this._hits[playerIndex];
@@ -99,9 +74,7 @@ class BattleGame {
                             this._checkGameOver();
                         } else {
                             misscount++;
-                            console.log(misscount)
                             if (misscount === 17) {
-                                console.log("NOTHING THERE");
                                 misses.push(turn);
                                 var results1 = ["miss", turn];
                                 var results2 = ["opponent-missed", turn];
@@ -129,9 +102,7 @@ class BattleGame {
                             this._checkGameOver();
                         } else {
                             misscount++;
-                            console.log(misscount)
                             if (misscount === 17) {
-                                console.log("NOTHING THERE");
                                 misses.push(turn);
                                 var results1 = ["miss", turn];
                                 var results2 = ["opponent-missed", turn];

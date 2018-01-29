@@ -233,12 +233,19 @@ socket.on('gamePlay', function(data) {
 
 function fire() {
     if (myturn) {
-        shotSplit = $(this).attr("id").split("-");
-        console.log(shotSplit);
-        shot = shotSplit[0];
-        console.log(shot);
-        socket.emit("turn", shot)
-        myturn = false;
+        console.log($(this).text());
+        var value = $(this).text();
+        if ($(this).text() === "*") {
+            onMessage("Already guessed this one try agian.");
+        } else {
+            ($(this).text("*"));
+            shotSplit = $(this).attr("id").split("-");
+            console.log(shotSplit);
+            shot = shotSplit[0];
+            console.log(shot);
+            socket.emit("turn", shot)
+            myturn = false;
+        }
     }
 }
 
