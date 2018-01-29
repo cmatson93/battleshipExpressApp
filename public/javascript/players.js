@@ -241,28 +241,32 @@ function fire() {
 }
 
 socket.on("result", function(data) {
-    if (data === "hit") {
+    console.log("data", data);
+    if (data[0] === "hit") {
         onMessage("You hit one! Try again. ");
         console.log(shot);
         var td = "#" + shot + "-2";
         $(td).addClass("hit");
-        // hitCount++;
-        // console.log(hitCount);
-        // if (hitCount === hitsToWin) {
-        //     socket.emit("gameOver", true);
-        // }
         myturn = true;
-    } else if (data === "attacked") {
+    } else if (data[0] === "attacked") {
         onMessage("Your ship has been hit! Your opponent gets another try.");
         myturn = false;
-    } else if (data === "miss") {
+        console.log("---------");
+        console.log(data[1]);
+        var td = "#" + data[1];
+        console.log(td);
+        $(td).removeClass("placed");
+        $(td).addClass("hit");
+    } else if (data[0] === "miss") {
         onMessage("You missed. ");
         var td = "#" + shot + "-2";
         $(td).addClass("miss");
         myturn = false;
-    } else if (data === "opponent-missed") {
+    } else if (data[0] === "opponent-missed") {
         onMessage("Your opponent missed. Your turn");
         myturn = true;
+        var td = "#" + data[1];
+        $(td).addClass("miss");
     }
 })
 

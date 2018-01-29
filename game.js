@@ -8,8 +8,8 @@ class BattleGame {
             []
         ];
         this._misses = [
-            [null],
-            [null]
+            [],
+            []
         ];
 
         this._sendToPlayers("Battleship game starts please submit your name if you haven't already!");
@@ -19,9 +19,6 @@ class BattleGame {
                 console.log("ship place");
                 this._shipPlacement(idx, shipObj)
             })
-        })
-
-        this._players.forEach((player, idx) => {
             player.on('turn', (turn) => {
                 this._onTurn(idx, turn)
             })
@@ -33,7 +30,6 @@ class BattleGame {
     }
 
     _sendToPlayers(msg) {
-        console.log("Constructor");
         this._players.forEach((player) => {
             player.emit('message', msg);
         });
@@ -63,22 +59,18 @@ class BattleGame {
         console.log(this._hits[playerIndex]);
         if (playerIndex === 0) {
             var opponentIndex = 1;
-            // console.log("------------------");
-            // console.log(this._shipObj[opponentIndex]);
             var opponentObj = this._shipObj[opponentIndex];
             for (var key in opponentObj) {
-                // console.log(key);
-                // console.log(opponentObj[key]);
                 var obj = opponentObj[key];
                 for (var prop in obj) {
-                    // console.log(prop);
-                    // console.log(obj[prop]);
                     var positions = obj[prop];
                     for (var i = 0; i < positions.length; i++) {
                         if (positions[i] === turn) {
                             hits.push(turn);
-                            this._players[playerIndex].emit("result", "hit");
-                            this._players[opponentIndex].emit("result", "attacked");
+                            var results1 = ["hit", turn];
+                            var results2 = ["attacked", turn];
+                            this._players[playerIndex].emit("result", results1);
+                            this._players[opponentIndex].emit("result", results2);
                             this._checkGameOver();
                         } else {
                             misscount++;
@@ -86,35 +78,29 @@ class BattleGame {
                             if (misscount === 17) {
                                 console.log("NOTHING THERE");
                                 misses.push(turn);
-                                this._players[playerIndex].emit("result", "miss");
-                                this._players[opponentIndex].emit("result", "opponent-missed");
+                                var results1 = ["miss", turn];
+                                var results2 = ["opponent-missed", turn];
+                                this._players[playerIndex].emit("result", results1);
+                                this._players[opponentIndex].emit("result", results2);
                             }
-                            // misses.push(turn);
-                            // this._players.forEach((player) => {
-                            //     player.emit("result", "miss");
-                            // })
                         }
                     }
                 }
             }
         } else {
             var opponentIndex = 0;
-            // console.log("------------------");
-            // console.log(this._shipObj[opponentIndex]);
             var opponentObj = this._shipObj[opponentIndex];
             for (var key in opponentObj) {
-                // console.log(key);
-                // console.log(opponentObj[key]);
                 var obj = opponentObj[key];
                 for (var prop in obj) {
-                    // console.log(prop);
-                    // console.log(obj[prop]);
                     var positions = obj[prop];
                     for (var i = 0; i < positions.length; i++) {
                         if (positions[i] === turn) {
                             hits.push(turn);
-                            this._players[playerIndex].emit("result", "hit");
-                            this._players[opponentIndex].emit("result", "attacked");
+                            var results1 = ["hit", turn];
+                            var results2 = ["attacked", turn];
+                            this._players[playerIndex].emit("result", results1);
+                            this._players[opponentIndex].emit("result", results2);
                             this._checkGameOver();
                         } else {
                             misscount++;
@@ -122,13 +108,11 @@ class BattleGame {
                             if (misscount === 17) {
                                 console.log("NOTHING THERE");
                                 misses.push(turn);
-                                this._players[playerIndex].emit("result", "miss");
-                                this._players[opponentIndex].emit("result", "opponent-missed");
+                                var results1 = ["miss", turn];
+                                var results2 = ["opponent-missed", turn];
+                                this._players[playerIndex].emit("result", results1);
+                                this._players[opponentIndex].emit("result", results2);
                             }
-                            // misses.push(turn);
-                            // this._players.forEach((player) => {
-                            //     player.emit("result", "miss");
-                            // })
                         }
                     }
                 }
@@ -145,11 +129,6 @@ class BattleGame {
             this._players[0].emit("gameOver");
             this._players[1].emit("gameOver");
         }
-        // if (turns[0] && turns[1]) {
-        //     this._sendToPlayers("Game Over" + turns.join(' : '));
-        //     this._turns = [null, null];
-        //     this._sendToPlayers("Next Round!!!");
-        // }
     }
 }
 
