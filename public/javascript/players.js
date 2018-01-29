@@ -268,6 +268,9 @@ socket.on("result", function(data) {
         myturn = true;
         var td = "#" + data[1];
         $(td).addClass("miss");
+    } else if (data === "already-guessed") {
+        onMessage("You already guessed that one. Try again.");
+        myturn = true;
     }
 })
 

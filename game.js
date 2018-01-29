@@ -1,7 +1,10 @@
 class BattleGame {
     constructor(p1, p2) {
         this._players = [p1, p2]
-        this._turns = [null, null];
+        this._turns = [
+            [],
+            []
+        ];
         this._shipObj = [null, null];
         this._hits = [
             [],
@@ -20,7 +23,7 @@ class BattleGame {
                 this._shipPlacement(idx, shipObj)
             })
             player.on('turn', (turn) => {
-                this._onTurn(idx, turn)
+                this._checkIfGuessed(idx, turn)
             })
         })
     };
@@ -48,8 +51,26 @@ class BattleGame {
         }
     };
 
+    _checkIfGuessed(playerIndex, turn) {
+        console.log("CHECKING");
+        console.log(this._turns[playerIndex].length)
+        if (this._turns[playerIndex].length === 0) {
+            this._onTurn(playerIndex, turn);
+        } else {
+            for (var i = 0; i < this._turns[playerIndex].length; i++) {
+                if (this._turns[playerIndex][i] === turn) {
+                    console.log("ALREADY Guessed");
+                    this._players[playerIndex].emit("result", "already-guessed");
+                } else {
+                    console.log("HAVENT GUESSED");
+                    this._onTurn(playerIndex, turn);
+                }
+            }
+        }
+    }
+
     _onTurn(playerIndex, turn) {
-        this._turns[playerIndex] = turn;
+        this._turns[playerIndex].push(turn);
         this._sendToPlayer(playerIndex, `You selected position ${turn}`)
         var hits = this._hits[playerIndex];
         var misses = this._misses[playerIndex];
