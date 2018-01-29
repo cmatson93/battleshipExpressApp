@@ -242,7 +242,7 @@ function fire() {
 
 socket.on("result", function(data) {
     if (data === "hit") {
-        onMessage("You hit one!");
+        onMessage("You hit one! Try again. ");
         console.log(shot);
         var td = "#" + shot + "-2";
         $(td).addClass("hit");
@@ -251,9 +251,17 @@ socket.on("result", function(data) {
         // if (hitCount === hitsToWin) {
         //     socket.emit("gameOver", true);
         // }
+        myturn = true;
     } else if (data === "attacked") {
-        onMessage("Your ship has been hit!");
-        $(".table2").on();
+        onMessage("Your ship has been hit! Your opponent gets another try.");
+        myturn = false;
+    } else if (data === "miss") {
+        onMessage("You missed. ");
+        var td = "#" + shot + "-2";
+        $(td).addClass("miss");
+        myturn = false;
+    } else if (data === "opponent-missed") {
+        onMessage("Your opponent missed. Your turn");
         myturn = true;
     }
 })

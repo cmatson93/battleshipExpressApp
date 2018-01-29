@@ -57,6 +57,7 @@ class BattleGame {
         this._sendToPlayer(playerIndex, `You selected position ${turn}`)
         var hits = this._hits[playerIndex];
         var misses = this._misses[playerIndex];
+        var misscount = 0;
         console.log("TURN");
         console.log(this._hits);
         console.log(this._hits[playerIndex]);
@@ -80,6 +81,14 @@ class BattleGame {
                             this._players[opponentIndex].emit("result", "attacked");
                             this._checkGameOver();
                         } else {
+                            misscount++;
+                            console.log(misscount)
+                            if (misscount === 17) {
+                                console.log("NOTHING THERE");
+                                misses.push(turn);
+                                this._players[playerIndex].emit("result", "miss");
+                                this._players[opponentIndex].emit("result", "opponent-missed");
+                            }
                             // misses.push(turn);
                             // this._players.forEach((player) => {
                             //     player.emit("result", "miss");
@@ -108,6 +117,14 @@ class BattleGame {
                             this._players[opponentIndex].emit("result", "attacked");
                             this._checkGameOver();
                         } else {
+                            misscount++;
+                            console.log(misscount)
+                            if (misscount === 17) {
+                                console.log("NOTHING THERE");
+                                misses.push(turn);
+                                this._players[playerIndex].emit("result", "miss");
+                                this._players[opponentIndex].emit("result", "opponent-missed");
+                            }
                             // misses.push(turn);
                             // this._players.forEach((player) => {
                             //     player.emit("result", "miss");
