@@ -1,6 +1,6 @@
 console.log("Reading chat.js");
 //Make connection:
-var socket = io.connect("https://git.heroku.com/quiet-sierra-43006.git");
+var socket = io.connect("https://quiet-sierra-43006.herokuapp.com/");
 
 var players = [];
 
