@@ -99,7 +99,7 @@ class BattleGame {
                             var results2 = ["attacked", turn];
                             this._players[playerIndex].emit("result", results1);
                             this._players[opponentIndex].emit("result", results2);
-                            this._checkGameOver();
+                            this._checkGameOver(playerIndex, opponentIndex);
                         } else {
                             misscount++;
                             if (misscount === 17) {
@@ -116,9 +116,14 @@ class BattleGame {
         }
     };
 
-    _checkGameOver() {
+    _checkGameOver(playerIndex, opponentIndex) {
         if (this._hits[0].length === 17 || this._hits[1].length === 17) {
-            this._sendToPlayers("Game Over.");
+            // this._sendToPlayers("Game Over.");
+            console.log("GAME OVER CHECK");
+            console.log(playerIndex);
+            console.log(opponentIndex);
+            this._sendToPlayer(playerIndex, "Game over you WIN!");
+            this._sendToPlayer(opponentIndex, "Game over. You loose...");
             this._players[0].emit("gameOver");
             this._players[1].emit("gameOver");
         }

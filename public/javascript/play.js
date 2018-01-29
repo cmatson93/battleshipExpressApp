@@ -283,21 +283,16 @@ socket.on("result", function(data) {
     console.log("data", data);
     if (data[0] === "hit") {
         onMessage("You hit one! Try again. ");
-        console.log(shot);
         var td = "#" + shot + "-2";
         $(td).addClass("hit");
         myturn = true;
     } else if (data[0] === "attacked") {
         onMessage("Your ship has been hit! Your opponent gets another try.");
         myturn = false;
-        console.log("---------");
-        console.log(data[1]);
         var td = "#" + data[1];
-        console.log(td);
-        $(td).removeClass("placed");
-        $(td).addClass("hit");
+        $(td).css("background-color", "red");
     } else if (data[0] === "miss") {
-        onMessage("You missed. ");
+        onMessage("You missed. Opponents turn.");
         var td = "#" + shot + "-2";
         $(td).addClass("miss");
         myturn = false;
@@ -305,7 +300,7 @@ socket.on("result", function(data) {
         onMessage("Your opponent missed. Your turn");
         myturn = true;
         var td = "#" + data[1];
-        $(td).addClass("miss");
+        $(td).css("background-color", "green");
     } else if (data === "already-guessed") {
         onMessage("You already guessed that one. Try again.");
         myturn = true;
@@ -313,5 +308,5 @@ socket.on("result", function(data) {
 })
 
 socket.on("gameOver", function() {
-    $(".gameboards").remove();
+    $(".gameboards").fadeOut();
 })
