@@ -27,28 +27,30 @@
 
 <body>
     <div class="container page">
-        <div class="jumbotron jumbotron-fluid ">
-            <div class="container justify-content-center">
-                <h1 class="display-4">Battleship</h1>
+        <div class="jumbotron jumbotron-fluid text-center">
+            <div class="container">
+                <h1 class="display-3">Battleship</h1>
                 <p class="lead">Let's Battle.</p>
-                <div class="form-row">
-                    <div class="col">
+                <div class="scoreboard col justify-content-center">
+                    <div class="form-row">
+                        <!-- <div class="col"> -->
                         <input id="handle" type="text" class="form-control" placeholder="Your Name">
-                    </div>
-                    <div class="col">
+                        <!-- </div> -->
+                        <!-- <div class="col"> -->
                         <input id="submitName" type="submit" value="Submit">
+                        <!-- </div> -->
                     </div>
-                </div>
-                <div class="row" id="players">
-                    <div class="col" id="player1">
-                        <div id="output1">Player 1</div>
+                    <div class="row justify-content-center" id="players">
+                        <div class="col" id="player1">
+                            <div id="output1">Player 1</div>
+                        </div>
+                        <div class="col" id="player2">
+                            <div id="output2">Player 2</div>
+                        </div>
                     </div>
-                    <div class="col" id="player2">
-                        <div id="output2">Player 2</div>
+                    <div class="row justify-content-center">
+                        <p id="message"></p>
                     </div>
-                </div>
-                <div class="row">
-                    <p id="message"></p>
                 </div>
             </div>
         </div>
@@ -81,7 +83,7 @@
                     <div class="col">
                         <button type="button" class="btn btn-primary dir-btn" value=false>Verticle</button>
                         <button type="button" class="btn btn-primary dir-btn" value=true>Horizontal</button>
-                        <button type="button" class="btn btn-primary submit-btn" value=true>Submit</button>
+                        <button type="button" class="btn btn-danger submit-btn" value=true>Submit</button>
                     </div>
                 </div>
             </div>

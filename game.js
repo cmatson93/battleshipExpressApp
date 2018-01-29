@@ -58,26 +58,30 @@ class BattleGame {
             this._onTurn(playerIndex, turn);
         } else {
             for (var i = 0; i < this._turns[playerIndex].length; i++) {
+                console.log(this._turns[playerIndex]);
+                console.log(this._turns[playerIndex][i]);
+                console.log(turn);
+                console.log("======");
                 if (this._turns[playerIndex][i] === turn) {
                     console.log("ALREADY Guessed");
                     this._players[playerIndex].emit("result", "already-guessed");
                 } else {
                     console.log("HAVENT GUESSED");
                     this._onTurn(playerIndex, turn);
+                    break;
                 }
             }
         }
     }
 
     _onTurn(playerIndex, turn) {
+        console.log("-ONTURN");
         this._turns[playerIndex].push(turn);
         this._sendToPlayer(playerIndex, `You selected position ${turn}`)
         var hits = this._hits[playerIndex];
         var misses = this._misses[playerIndex];
         var misscount = 0;
-        console.log("TURN");
-        console.log(this._hits);
-        console.log(this._hits[playerIndex]);
+        //If statements to check player 
         if (playerIndex === 0) {
             var opponentIndex = 1;
             var opponentObj = this._shipObj[opponentIndex];
@@ -142,9 +146,6 @@ class BattleGame {
     };
 
     _checkGameOver() {
-        console.log("TRACKING HITS");
-        console.log(this._hits[0].length);
-        console.log(this._hits[1].length);
         if (this._hits[0].length === 17 || this._hits[1].length === 17) {
             this._sendToPlayers("Game Over.");
             this._players[0].emit("gameOver");

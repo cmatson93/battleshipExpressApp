@@ -14,6 +14,7 @@ body {
     border-radius: 8px;
     border: 2px solid #F1EBE2;
     color: #F1EBE2;
+    padding-bottom: 10px;
 }
 
 .jumbotron h1 {
@@ -94,4 +95,20 @@ table {
 
 #players {
     margin-top: 10px;
+}
+
+#message {
+    margin-top: 20px;
+}
+
+#handle {
+    width: 50%;
+    margin-right: 10px;
+    margin-left: 90px;
+}
+
+#submitName {
+    width: 20%;
+    border-radius: 3px;
+    height: 40px;
 }

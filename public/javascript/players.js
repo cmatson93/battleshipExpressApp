@@ -28,6 +28,7 @@ $("#submitName").on("click", function(event) {
             player2: player
         })
     }
+    $(".form-row").remove();
 })
 
 //Player Ship Selection 
