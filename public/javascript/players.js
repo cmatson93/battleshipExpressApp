@@ -156,6 +156,7 @@ socket.on('player', function(data) {
         $("#output2").text(data.player2);
         makeTable1();
         makeTable2();
+        onMessage("Place your ships on your board.");
     }
     console.log(players);
 });
@@ -164,6 +165,8 @@ socket.on('player', function(data) {
 function makeTable1() {
     //Make Table 
     var table1 = $('#tb1');
+    //Give table a header: 
+    $(".header1").append("<h2 class=table1-header>Your Board</h2>");
     var row, cell;
     var gameBoard = 8;
 
@@ -179,6 +182,8 @@ function makeTable1() {
 }
 
 function makeTable2() {
+    //Give table a header 
+    $(".header2").append("<h2 class=table2-header>Opponents Board</h2>");
     //Make Table 2
     var table2 = $('#tb2');
     var row, cell;
@@ -218,16 +223,22 @@ $(".submit-btn").on('click', function(event) {
 
 var shot;
 var shotSplit;
+var myturn = true;
 socket.on('gamePlay', function(data) {
     onMessage(data);
-    $(".table2").on("click", function(event) {
+    $(".table2").on("click", fire);
+})
+
+function fire() {
+    if (myturn) {
         shotSplit = $(this).attr("id").split("-");
         console.log(shotSplit);
         shot = shotSplit[0];
         console.log(shot);
         socket.emit("turn", shot)
-    })
-})
+        myturn = false;
+    }
+}
 
 socket.on("result", function(data) {
     if (data === "hit") {
@@ -242,6 +253,8 @@ socket.on("result", function(data) {
         // }
     } else if (data === "attacked") {
         onMessage("Your ship has been hit!");
+        $(".table2").on();
+        myturn = true;
     }
 })
 

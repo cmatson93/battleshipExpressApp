@@ -77,7 +77,7 @@ class BattleGame {
                         if (positions[i] === turn) {
                             hits.push(turn);
                             this._players[playerIndex].emit("result", "hit");
-                            this._players[opponentIndex].emit("result", "Your ship got hit!");
+                            this._players[opponentIndex].emit("result", "attacked");
                             this._checkGameOver();
                         } else {
                             // misses.push(turn);
