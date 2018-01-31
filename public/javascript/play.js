@@ -51,22 +51,9 @@ $('h6').on("click", function() {
     $(this).addClass('selected');
     var length = $(this).attr("id");
     $(document).ready(function() {
-        console.log(length);
-
         if (shipSelected === true) {
             $(".table1").hover(function() {
                 $(this).css("background-color", "pink");
-                var item = $(this).attr("id");
-                var hoverArray = [];
-                console.log(length);
-                console.log("item", item);
-                console.log(typeof(item));
-                if (dir === "true") {
-                    for (var i = 0; i < length; i++) {
-                        hoverArray.push(parseInt(item) + 1);
-                        console.log(hoverArray);
-                    }
-                }
             }, function() {
                 if ($(this).text() === '-') {
                     $(this).css("background-color", "blue")
@@ -153,23 +140,18 @@ function makeShipObj(placement, ship) {
     switch (ship) {
         case "destroyer":
             shipObj.destroyer = { coordinates: placement, hits: [] };
-            // console.log(shipObj);
             break;
         case "submarine":
             shipObj.submarine = { coordinates: placement, hits: [] };
-            // console.log(shipObj);
             break;
         case "cruiser":
             shipObj.cruiser = { coordinates: placement, hits: [] };
-            // console.log(shipObj);
             break;
         case "battleship":
             shipObj.battleship = { coordinates: placement, hits: [] };
-            // console.log(shipObj);
             break;
         case "carrier":
             shipObj.carrier = { coordinates: placement, hits: [] };
-            // console.log(shipObj);
             break;
     }
 }
@@ -235,8 +217,6 @@ function makeTable2() {
 var shipobjLength = 0;
 //Once Ships are all placed send object to server:
 $(".submit-btn").on('click', function(event) {
-    console.log(shipObj);
-    console.log(shipObj.destroyer.coordinates.length);
     if (shipObj.destroyer.coordinates.length > 0) {
         if (shipObj.battleship.coordinates.length > 0) {
             if (shipObj.carrier.coordinates.length > 0) {
@@ -263,14 +243,12 @@ socket.on('gamePlay', function(data) {
 
 function fire() {
     if (myturn) {
-        console.log($(this).text());
         var value = $(this).text();
         if ($(this).text() === "*") {
             onMessage("Already guessed this one try agian.");
         } else {
             ($(this).text("*"));
             shotSplit = $(this).attr("id").split("-");
-            console.log(shotSplit);
             shot = shotSplit[0];
             console.log(shot);
             socket.emit("turn", shot)

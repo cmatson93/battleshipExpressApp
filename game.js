@@ -118,10 +118,6 @@ class BattleGame {
 
     _checkGameOver(playerIndex, opponentIndex) {
         if (this._hits[0].length === 17 || this._hits[1].length === 17) {
-            // this._sendToPlayers("Game Over.");
-            console.log("GAME OVER CHECK");
-            console.log(playerIndex);
-            console.log(opponentIndex);
             this._sendToPlayer(playerIndex, "Game over you WIN!");
             this._sendToPlayer(opponentIndex, "Game over. You loose...");
             this._players[0].emit("gameOver");
